@@ -1,27 +1,28 @@
 var requireGlobal = {
-	'UwdMapProvider' : null
+	'UwdMapProvider' : require('../provider/map')
 };
 
-requireGlobal.UwdMapProvider = require('../provider/map');
+//function UwdMapService() {}
 
-function UwdMapService {}
+var UwdMapService = {};
 
-UwdMapService.prototype.add = function(req, res) {
+UwdMapService.addUser = function(req, res) {
+	requireGlobal.UwdMapProvider.addUser(req.body, function(result){
+		res.json(result);
+	});
+};
+
+UwdMapService.remove = function(req, res) {
 	//ToDo
-	
 };
 
-UwdMapService.prototype.remove = function(req, res) {
-	//ToDo
-};
-
-UwdMapService.prototype.getPosition = function(req, res) {
+UwdMapService.getPosition = function(req, res) {
 	//ToDo
 	//받아오는 객체의 이름이 reqString이라고 가정
 	//inputStream.split('$');
 	// [id, latitude, longitude, role]
 	var self = this;
-	var inputStream = req.body.data;
+	var inputStream = req.body.data || req.body;
 	var requestObject = {};
 	var inputArr = [];
 	var response = null;
@@ -33,7 +34,7 @@ UwdMapService.prototype.getPosition = function(req, res) {
 		'role' : inputArr[3]
 	};
 	requireGlobal.UwdMapProvider.getPosition(requestObject, function(result){
-		if(result === true){
+		if(result.result === true){
 			response = self._makePositionString(result.data);
 			res.send(response);	
 		}
@@ -44,7 +45,7 @@ UwdMapService.prototype.getPosition = function(req, res) {
 	});
 };
 
-UwdMapService.prototype._makePositionString = function(data){
+UwdMapService._makePositionString = function(data){
 	var returnString = "";
 	var len = data.length;
 	for(var i = 0 ; i < len ; i++){
@@ -59,15 +60,15 @@ UwdMapService.prototype._makePositionString = function(data){
 	return returnString;
 };
 
-UwdMapService.prototype.setPosition = function(req, res){
+UwdMapService.setPosition = function(req, res){
 	//ToDo
 };
 
-UwdMapService.prototype.setOnline = function(req, res){
+UwdMapService.setOnline = function(req, res){
 	//ToDo
 };
 
-UwdMapService.prototype.getOnline = function(req, res){
+UwdMapService.getOnline = function(req, res){
 	//ToDo
 
 };

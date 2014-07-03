@@ -64,12 +64,13 @@ app.use(function(err, req, res, next) {
 });
 
 
+//mongoose.connect(process.env.MONGOHQ_URL || 'mongodb://localhost/uwd');//'mongodb://luxstellarm:qufqlc12@kahana.mongohq.com:10054/app27013508' );
 //mongo : connect to mongoDB
-mongoose.connect('mongodb://localhost/uwd');
-
+//mongoose.connect('mongodb://localhost/uwd');
+mongoose.connect('mongodb://luxstellarum:qufqlc12@kahana.mongohq.com:10062/app27014310' || 'mongodb://localhost/uwd');
 
 var server = app.listen(10512, function(){
-    console.log("listening port on %d", server.address().port);
+    console.log("listening port on 10512");
 });
 
 // //socket : make socket.io object

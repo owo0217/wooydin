@@ -1,0 +1,23 @@
+doctype html5
+html
+	head
+		title
+			| Add
+	body
+		| ID
+		input#id(type='text')
+		br
+		| 위도(latitude, 초기값 0)
+		input#latitude(type='text', value='0')
+		br
+		| 경도(longitude, 초기값 0)
+		input#longitude(type='text', value='0')
+		br
+		| 역할(role, 0:승객 1:기사)
+		input#role(type='text', value='0')
+		br
+		input#add(type='button', value='Add')
+		input#getPosition(type='button', value='getPosition')
+
+		script(type='text/javascript', src='/library/jquery-1.8.3.min.js')
+		script(type='text/javascript', src='/javascripts/adduser.js')
