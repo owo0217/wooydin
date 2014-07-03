@@ -27,6 +27,7 @@ UwdMapService.getPosition = function(req, res) {
 	var inputArr = [];
 	var response = null;
 	inputArr = inputStream.split('$');
+	console.log(req.body);
 	requestObject = {
 		'id' : inputArr[0],
 		'latitude' : inputArr[1],
