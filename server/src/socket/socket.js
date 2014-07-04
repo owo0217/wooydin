@@ -52,7 +52,7 @@ function dataHandler(data, socket){
 	var dataString = data.toString();
 
 	//dataString = trim(dataString);
-	strArray = dataString.split($);
+	strArray = dataString.split('$');
 
 	switch(strArray[0]){
 		case 'CONNECT':
