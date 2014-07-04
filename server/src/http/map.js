@@ -41,11 +41,11 @@ UwdMapService.getPosition = function(req, res) {
 			console.log("[SERVER] Response Data : ");
 			console.log(response);
 
-			res.send(response);	
+			res.send(JSON.stringify(response));	
 		}
 		else {
 			console.log("[SERVER] Response Data : Empty ");
-			res.send('empty');
+			res.send(JSON.stringify('empty'));
 		}
 		
 	});
