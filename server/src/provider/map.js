@@ -12,8 +12,8 @@ mapGlobal = {
 };
 
 mapConst = {
-	'latitudeOffset' : 0.0013,
-	'longitudeOffset' : 0.003
+	'latitudeOffset' : 0.02,
+	'longitudeOffset' : 0.02
 };
 
 mapGlobal.schema = mongoose.Schema;
@@ -64,41 +64,26 @@ UwdMapProvider.remove = function(){
 UwdMapProvider.getPosition = function(data, callback){
 	//ToDo
 	var response = {};
-
-	mapGlobal.mapModel.find({'online' : true})
-						.where('latitude').lte( parseFloat(data.latitude) + mapConst.latitudeOffset )
-						.where('longitude').lte( parseFloat(data.longitude) + mapConst.longitudeOffset ).exec(function(err, docs){
-	//						if(!err){
-	// 							response = {
-	// 								'result' : true,
-	// 								'data' : docs
-	// 							};
-	// 							callback(response);
-	// 						}
-	// 						else {
-	// 							response = {
-	// 								'result' : false
-	// 							};
-	// 							callback(response);
-	// 						}
-	// 					});
-
-	//mapGlobal.mapModel.find({'online' : true}, function(err, docs){
-							if(!err && (docs.length > 0) ) {
-								response = {
-									'result' : true,
-									'data' : docs
-								};
-								callback(response);
-							}
-							else {
-								response = {
-									'result' : false
-								};
-								callback(response);
-							}
-						});
-
+	console.log(parseFloat(data.longitude));
+	mapGlobal.mapModel.find({
+		'online' : true,
+		'longitude' : {'$gte' : parseFloat(data.longitude) - mapConst.longitudeOffset, '$lte' : parseFloat(data.longitude) + mapConst.longitudeOffset},
+		'latitude' : {'$gte' : parseFloat(data.latitude) - mapConst.latitudeOffset, '$lte' : parseFloat(data.latitude) + mapConst.latitudeOffset }
+	}).exec(function(err, docs){
+		if(!err && (docs.length > 0) ) {
+			response = {
+				'result' : true,
+				'data' : docs
+			};
+			callback(response);
+		}
+		else {
+			response = {
+				'result' : false
+			};
+			callback(response);
+		}
+	});
 };
 
 UwdMapProvider.setOnline = function() {
