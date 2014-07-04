@@ -9,9 +9,17 @@ socketGlobal.net = require('net');
 socketGlobal.server = socketGlobal.net.createServer( function(client){
 	if(client){
 		client.setEncoding('utf-8');
-		client.on('data', dataHandler(data, client));
-		client.on('end', connectionEndHandler());
-		client.on('error', errorHandler(err));
+		
+		client.on('data', function(data){
+			dataHandler(data, client);
+		});
+		
+		client.on('end', function(data){
+			connectionEndHandler();
+		});
+		client.on('error', function(){
+			errorHandler(err)
+		});
 	}
 });
 
