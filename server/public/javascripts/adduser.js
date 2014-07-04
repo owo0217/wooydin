@@ -25,19 +25,19 @@ $(document).ready(function(){
 	}
 
 	function getPosition() {
-		var _data = {};
-		_data['id'] = $("#id").val();
-		_data['latitude'] = $("#latitude").val();
-		_data['longitude'] = $("#longitude").val();
-		_data['role'] = $("#role").val();
+		var __data = {};
+		__data['id'] = $("#id").val();
+		__data['latitude'] = $("#latitude").val();
+		__data['longitude'] = $("#longitude").val();
+		__data['role'] = $("#role").val();
 
 		console.log("[CLIENT] Request data for get position : ");
-		console.log(_data);
+		console.log(__data);
 		$.ajax({
 			type : 'POST',
-			dataType : 'text',
+			dataType : 'JSON',
 			url : '/getPosition',
-			data : {'data' : _data},
+			data : __data,
 			success : function( result ) {
 				console.log("[CLIENT] Result of get position : ");
 				console.log( result );					
