@@ -44,6 +44,7 @@ UwdMapService.getPosition = function(req, res) {
 			res.send(response);	
 		}
 		else {
+			console.log("[SERVER] Response Data : Empty ");
 			res.send('empty');
 		}
 		
