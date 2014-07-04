@@ -25,11 +25,11 @@ $(document).ready(function(){
 	}
 
 	function getPosition() {
-		var _data = "";
-		_data += $("#id").val() + "$";
-		_data += $("#latitude").val() + "$";
-		_data += $("#longitude").val() + "$";
-		_data += $("#role").val() + "";
+		var _data = {};
+		_data['id'] = $("#id").val();
+		_data['latitude'] = $("#latitude").val();
+		_data['longitude'] = $("#longitude").val();
+		_data['role'] = $("#role").val();
 
 		console.log("[CLIENT] Request data for get position : ");
 		console.log(_data);

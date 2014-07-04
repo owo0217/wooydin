@@ -25,17 +25,15 @@ UwdMapService.getPosition = function(req, res) {
 	console.log(req.body);
 
 	var self = this;
-	var inputStream = req.body.data || req.body;
+	var inputStream = req.body;//req.body.data || req.body;
 	var requestObject = {};
-	var inputArr = [];
 	var response = null;
-	inputArr = inputStream.split('$');
-
+	
 	requestObject = {
-		'id' : inputArr[0],
-		'latitude' : inputArr[1],
-		'longitude' : inputArr[2],
-		'role' : inputArr[3]
+		'id' : inputStream.id,
+		'latitude' : inputStream.latitude,
+		'longitude' : inputStream.longitude,
+		'role' : inputStream.role
 	};
 	requireGlobal.UwdMapProvider.getPosition(requestObject, function(result){
 		if(result.result === true){

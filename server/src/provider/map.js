@@ -12,8 +12,8 @@ mapGlobal = {
 };
 
 mapConst = {
-	'latitudeOffset' : 0.00005,
-	'longitudeOffset' : 0.00005
+	'latitudeOffset' : 0.0013,
+	'longitudeOffset' : 0.003
 };
 
 mapGlobal.schema = mongoose.Schema;
