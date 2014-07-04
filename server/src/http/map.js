@@ -21,13 +21,16 @@ UwdMapService.getPosition = function(req, res) {
 	//받아오는 객체의 이름이 reqString이라고 가정
 	//inputStream.split('$');
 	// [id, latitude, longitude, role]
+	console.log("[SERVER] Received Data : ");
+	console.log(req.body);
+
 	var self = this;
 	var inputStream = req.body.data || req.body;
 	var requestObject = {};
 	var inputArr = [];
 	var response = null;
 	inputArr = inputStream.split('$');
-	console.log(req.body);
+
 	requestObject = {
 		'id' : inputArr[0],
 		'latitude' : inputArr[1],
@@ -37,6 +40,9 @@ UwdMapService.getPosition = function(req, res) {
 	requireGlobal.UwdMapProvider.getPosition(requestObject, function(result){
 		if(result.result === true){
 			response = self._makePositionString(result.data);
+			console.log("[SERVER] Response Data : ");
+			console.log(response);
+
 			res.send(response);	
 		}
 		else {

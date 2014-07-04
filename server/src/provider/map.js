@@ -66,10 +66,10 @@ UwdMapProvider.getPosition = function(data, callback){
 	var response = {};
 
 	console.log(data);
-	// mapGlobal.mapModel.find({'id' : data.id, 'online' : true})
-	// 					.where('latitude').lte( data.latitude + mapConst.latitudeOffset )
-	// 					.where('longitude').lte( data.longitude + mapConst.longitudeOffset ).exec(function(err, docs){
-	// 						if(!err){
+	mapGlobal.mapModel.find({'online' : true})
+						.where('latitude').lte( data.latitude + mapConst.latitudeOffset )
+						.where('longitude').lte( data.longitude + mapConst.longitudeOffset ).exec(function(err, docs){
+	//						if(!err){
 	// 							response = {
 	// 								'result' : true,
 	// 								'data' : docs
@@ -84,9 +84,9 @@ UwdMapProvider.getPosition = function(data, callback){
 	// 						}
 	// 					});
 
-	mapGlobal.mapModel.find({'id' : data.id, 'online' : true}, function(err, docs){
-							console.log(docs, err);
-							if(!err){
+	//mapGlobal.mapModel.find({'online' : true}, function(err, docs){
+							console.log("[SERVER] docs data : ", docs, err);
+							if(!err && (docs.length > 0) ) {
 								response = {
 									'result' : true,
 									'data' : docs

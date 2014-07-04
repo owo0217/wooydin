@@ -15,6 +15,7 @@ $(document).ready(function(){
 			url : '/addUser',
 			data : _data,
 			success : function( result ) {
+				console.log("[CLIENT] Result of user add : ")
 				console.log( result );					
 			},
 			error : function( request, status, error ) {
@@ -30,6 +31,7 @@ $(document).ready(function(){
 		_data += $("#longitude").val() + "$";
 		_data += $("#role").val() + "";
 
+		console.log("[CLIENT] Request data for get position : ");
 		console.log(_data);
 		$.ajax({
 			type : 'POST',
@@ -37,6 +39,7 @@ $(document).ready(function(){
 			url : '/getPosition',
 			data : {'data' : _data},
 			success : function( result ) {
+				console.log("[CLIENT] Result of get position : ");
 				console.log( result );					
 			},
 			error : function( request, status, error ) {
